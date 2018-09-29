@@ -1,0 +1,24 @@
+---
+title: "ActiveLicenses"
+author: "cyorir"
+date: "September 28, 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Denver Active Licenses
+
+The licensees with the highest number of active licenses. Data from the Denver Open Data Catalog:
+
+https://www.denvergov.org/opendata/dataset/city-and-county-of-denver-active-individual-licenses
+
+```{r cars}
+library(ggplot2)
+library(dplyr)
+data <- read.csv("active_individual_licenses.csv")
+data <- data %>% group_by(LICENSEE_NAME) %>% summarise(LICENSE_COUNT = n()) %>% arrange(desc(LICENSE_COUNT))
+data
+```
